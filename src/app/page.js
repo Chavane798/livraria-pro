@@ -58,11 +58,11 @@ function App() {
                 </button>
             )}
 
-            <h2 className="text-xl">{currentPath || "Root"}</h2>
             
-            <ul className="list-none mt-4 space-y-2">
+            
+            <ul className="columns-4 flex-wrap space-y-2 ">
                 {itemsList.map((item, index) => (
-                    <li key={index} className="p-2 bg-gray-100 border-l-4 border-blue-500 rounded hover:bg-gray-200 transition-all duration-200 ease-in-out">
+                    <li key={index} className=" p-2 bg-gray-100 border-l-4 border-blue-500 rounded hover:bg-gray-200 transition-all duration-200 ease-in-out">
                     {item.isFolder ? (
                         <span 
                             onClick={() => handleFolderClick(item.fullPath)} 
