@@ -47,7 +47,7 @@ function App() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl  text-center mb-4">Bem vindo a minha Biblioteca</h1>
+            <h1 className="text-3xl  text-center mb-4">Bem-vindo à minha biblioteca.</h1>
 
             {currentPath && (
                 <button 
