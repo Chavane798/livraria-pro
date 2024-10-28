@@ -47,13 +47,13 @@ function App() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl  text-center mb-4">Welcome to my website</h1>
+            <h1 className="text-3xl  text-center mb-4">Bem vindo a minha Biblioteca</h1>
 
             {currentPath && (
                 <button 
-                    onClick={handleBackClick}
-                    className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                >
+                onClick={handleBackClick}
+                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 shadow-md transition-all duration-200 ease-in-out"
+            >
                     Back
                 </button>
             )}
@@ -62,15 +62,15 @@ function App() {
             
             <ul className="list-none mt-4 space-y-2">
                 {itemsList.map((item, index) => (
-                    <li key={index} className="p-2 bg-gray-100 rounded hover:bg-gray-200 transition">
-                        {item.isFolder ? (
-                            <span 
-                                onClick={() => handleFolderClick(item.fullPath)} 
-                                className="cursor-pointer text-blue-600 hover:underline"
-                            >
-                                📁 {item.name}
-                            </span>
-                        ) : (
+                    <li key={index} className="p-2 bg-gray-100 border-l-4 border-blue-500 rounded hover:bg-gray-200 transition-all duration-200 ease-in-out">
+                    {item.isFolder ? (
+                        <span 
+                            onClick={() => handleFolderClick(item.fullPath)} 
+                            className="cursor-pointer text-blue-600 font-semibold hover:underline"
+                        >
+                            📁 {item.name}
+                        </span>
+                         ) : (
                             <a 
                                 href={item.url} 
                                 target="_blank" 
