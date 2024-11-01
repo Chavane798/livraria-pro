@@ -82,7 +82,7 @@ function App() {
                                 download 
                                 className="p-1 ring-offset-2 ring-4 rounded block text-center "
                             >
-                                Download
+                                Visualizar
                             </a>
                         </>
                     </li>
