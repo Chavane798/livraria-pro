@@ -30,8 +30,8 @@ function App() {
     }, [currentPath]);
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl text-center m-4 gap-4 ">Bem-vindo à minha biblioteca!</h1>
+        <div className="container mx-auto p-4 ">
+            <h1 className="text-3xl text-center m-4 gap-4 text-7xl ">Bem-vindo à minha biblioteca!</h1>
             <div className="justify-center m-6 bg-slate-100 p-8 raunded">
                 <p>Explore um vasto acervo de livros sobre programação, onde você encontrará 
                 recursos para todos os níveis de conhecimento, desde iniciantes até desenvolvedores avançados.</p> 
