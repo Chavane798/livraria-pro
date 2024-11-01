@@ -12,33 +12,17 @@ function App() {
             const directoryRef = ref(storage, path);
             const response = await listAll(directoryRef);
 
-            const folderPromises = response.prefixes.map((folderRef) => ({
-                name: folderRef.name,
-                fullPath: folderRef.fullPath,
-                isFolder: true,
-            }));
-
             const filePromises = await Promise.all(
                 response.items.map(async (item) => ({
                     name: item.name,
                     url: await getDownloadURL(item),
-                    isFolder: false,
                 }))
             );
 
-            setItemsList([...folderPromises, ...filePromises]);
+            setItemsList([...filePromises]);
         } catch (error) {
             console.error("Error fetching items:", error);
         }
-    };
-
-    const handleFolderClick = (folderPath) => {
-        setCurrentPath(folderPath);
-    };
-
-    const handleBackClick = () => {
-        const parentPath = currentPath.split("/").slice(0, -1).join("/");
-        setCurrentPath(parentPath);
     };
 
     useEffect(() => {
@@ -47,39 +31,37 @@ function App() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl  text-center mb-4">Bem-vindo à minha biblioteca.</h1>
-
-            {currentPath && (
-                <button 
-                onClick={handleBackClick}
-                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 shadow-md transition-all duration-200 ease-in-out"
-            >
-                    Back
-                </button>
-            )}
-
+            <h1 className="text-3xl text-center m-4 gap-4 ">Bem-vindo à minha biblioteca!</h1>
+            <div className="justify-center m-6 bg-slate-100 p-8 raunded">
+                <p>Explore um vasto acervo de livros sobre programação, onde você encontrará 
+                recursos para todos os níveis de conhecimento, desde iniciantes até desenvolvedores avançados.</p> 
+                <p>Nossa biblioteca 
+                oferece acesso gratuito a conteúdos de qualidade, cobrindo diversas linguagens e frameworks, como JavaScript, 
+                Python, React, Next.js e muito mais.</p>
+                <p>Descubra novos conceitos, aprofunde-se em tecnologias inovadoras e aprimore suas habilidades. 
+                Estamos aqui para ajudar você a crescer e se destacar no mundo da programação!</p>
+            </div>
             
-            
-            <ul className="columns-4 flex-wrap space-y-2 ">
+            <ul className="grid grid-cols-3 gap-4 place-content-center">
                 {itemsList.map((item, index) => (
-                    <li key={index} className=" p-2 bg-gray-100 border-l-4 border-blue-500 rounded hover:bg-gray-200 transition-all duration-200 ease-in-out">
-                    {item.isFolder ? (
-                        <span 
-                            onClick={() => handleFolderClick(item.fullPath)} 
-                            className="cursor-pointer text-blue-600 font-semibold hover:underline"
-                        >
-                            📁 {item.name}
-                        </span>
-                         ) : (
+                    <li key={index} className="p-8 border-2 rounded gap-2">
+                        <>
                             <a 
                                 href={item.url} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="text-blue-600 hover:underline"
+                                className="block text-justify text-wrap mb-2"
                             >
                                 📄 {item.name}
                             </a>
-                        )}
+                            <a 
+                                href={item.url} 
+                                download 
+                                className="p-1 ring-offset-2 ring-4 rounded block text-center"
+                            >
+                                Download
+                            </a>
+                        </>
                     </li>
                 ))}
             </ul>
