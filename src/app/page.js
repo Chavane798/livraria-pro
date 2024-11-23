@@ -9,6 +9,7 @@ function App() {
     const [currentPath, setCurrentPath] = useState("");
     const [itemsList, setItemsList] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); // Estado para o termo de pesquisa
+    const [showPopup, setShowPopup] = useState(true); // Estado para o pop-up de boas-vindas
 
     const fetchStorageItems = async (path) => {
         try {
@@ -50,6 +51,30 @@ function App() {
 
             <div className="container mx-auto p-4 max-w-7xl">
                 <h1 className="text-3xl text-center m-4">Bem-vindo à minha biblioteca!</h1>
+
+                {/* Pop-up de boas-vindas */}
+                {showPopup && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <div className="bg-white p-8 rounded shadow-lg max-w-md w-full text-center">
+                            <h2 className="text-2xl font-bold mb-4">Bem-vindo à Biblioteca Online!</h2>
+                            <p className="mb-4">
+                                Explore um vasto acervo de livros sobre programação. 
+                                Aqui você encontrará recursos para todos os níveis de conhecimento, 
+                                desde iniciantes até desenvolvedores avançados.
+                            </p>
+                            <p className="mb-4">
+                                Descubra novas tecnologias, aprofunde suas habilidades e alcance 
+                                o próximo nível na sua jornada como programador!
+                            </p>
+                            <button
+                                onClick={() => setShowPopup(false)}
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                            >
+                                Vamos começar!
+                            </button>
+                        </div>
+                    </div>
+                )}
 
                 {/* Campo de pesquisa */}
                 <div className="mb-6">
