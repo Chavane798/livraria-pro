@@ -1,11 +1,11 @@
+// src/app/page.js ou src/app/index.js
 "use client";
 import { useState, useEffect } from "react";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../components/Data_Base_API";
 import Head from "next/head";
-import Footer from "@/components/Footer";
 
-function App() {
+function Page() {
     const [currentPath, setCurrentPath] = useState("");
     const [itemsList, setItemsList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -55,7 +55,7 @@ function App() {
                 {/* Pop-up de boas-vindas */}
                 {showPopup && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white p-8 rounded shadow-lg max-w-md w-full text-center">
+                        <div className="bg-white p-8 rounded shadow-lg max-w-md w-full text-justify">
                             <h2 className="text-2xl font-bold mb-4">Bem-vindo à Biblioteca Online!</h2>
                             <p className="mb-4">
                                 Explore um vasto acervo de livros sobre programação. 
@@ -112,10 +112,9 @@ function App() {
                     ))}
                 </ul>
             </div>
-            <Footer />
+            
         </>
     );
 }
 
-export default App;
-
+export default Page;
