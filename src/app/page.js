@@ -1,17 +1,30 @@
-// src/app/page.js ou src/app/index.js
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { analytics } from "../components/Data_Base_API";
+import { logEvent } from "firebase/analytics";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../components/Data_Base_API";
 import Head from "next/head";
 
 function Page() {
+    // Estados
     const [currentPath, setCurrentPath] = useState("");
     const [itemsList, setItemsList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [showPopup, setShowPopup] = useState(true); 
+    const [showPopup, setShowPopup] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-    const fetchStorageItems = async (path) => {
+    // Log de evento de acesso à página
+    useEffect(() => {
+        logEvent(analytics, "page_view", {
+            page_title: "Página Inicial",
+            page_location: window.location.href,
+        });
+    }, []);
+
+    // Função para buscar itens do Firebase Storage
+    const fetchStorageItems = useCallback(async (path) => {
+        setLoading(true);
         try {
             const directoryRef = ref(storage, path);
             const response = await listAll(directoryRef);
@@ -23,19 +36,21 @@ function Page() {
                 }))
             );
 
-            // Ordenar os itens por nome
             const sortedItems = filePromises.sort((a, b) => a.name.localeCompare(b.name));
             setItemsList(sortedItems);
         } catch (error) {
-            console.error("Error fetching items:", error);
+            console.error("Erro ao buscar itens:", error);
+        } finally {
+            setLoading(false);
         }
-    };
+    }, []);
 
+    // Atualiza os itens ao mudar o caminho atual
     useEffect(() => {
         fetchStorageItems(currentPath);
-    }, [currentPath]);
+    }, [currentPath, fetchStorageItems]);
 
-    // Filtrar os itens com base no termo de pesquisa
+    // Filtra os itens com base no termo de pesquisa
     const filteredItems = itemsList.filter((item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -87,6 +102,9 @@ function Page() {
                     />
                 </div>
 
+                {/* Mensagem de carregamento */}
+                {loading && <p className="text-center text-gray-500">Carregando itens...</p>}
+
                 {/* Lista de itens filtrados */}
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-content-center">
                     {filteredItems.map((item, index) => (
@@ -97,6 +115,7 @@ function Page() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block text-justify text-wrap mb-2 text-base sm:text-lg"
+                                    aria-label={`Visualizar o arquivo ${item.name}`}
                                 >
                                     📄 {item.name}
                                 </a>
@@ -104,15 +123,15 @@ function Page() {
                                     href={item.url}
                                     download
                                     className="p-1 ring-offset-2 ring-4 rounded block text-center"
+                                    aria-label={`Baixar o arquivo ${item.name}`}
                                 >
-                                    Visualizar
+                                    Baixar
                                 </a>
                             </>
                         </li>
                     ))}
                 </ul>
             </div>
-            
         </>
     );
 }
