@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 function App() {
     const [currentPath, setCurrentPath] = useState("");
     const [itemsList, setItemsList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(""); // Estado para o termo de pesquisa
-    const [showPopup, setShowPopup] = useState(true); // Estado para o pop-up de boas-vindas
+    const [searchTerm, setSearchTerm] = useState("");
+    const [showPopup, setShowPopup] = useState(true); 
 
     const fetchStorageItems = async (path) => {
         try {
