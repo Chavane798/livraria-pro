@@ -1,5 +1,5 @@
-import { FaFacebook, FaInstagram, FaGithub, FaWhatsapp } from 'react-icons/fa';
-import { MdOutlinePhoneAndroid } from 'react-icons/md';
+//import { FaFacebook, FaInstagram, FaGithub, FaWhatsapp } from 'react-icons/fa';
+//import { MdOutlinePhoneAndroid } from 'react-icons/md';
 
 export default function SocialMidia() {
     return (
@@ -14,7 +14,7 @@ export default function SocialMidia() {
                         aria-label="Facebook"
                         className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
                     >
-                        <FaFacebook className="mr-2" /> Facebook
+                        Facebook
                     </a>
                 </li>
                 <li className="flex items-center">
@@ -25,7 +25,7 @@ export default function SocialMidia() {
                         aria-label="Instagram"
                         className="flex items-center text-pink-500 hover:text-pink-700 transition-colors"
                     >
-                        <FaInstagram className="mr-2" /> Instagram
+                        Instagram
                     </a>
                 </li>
                 <li className="flex items-center">
@@ -36,7 +36,7 @@ export default function SocialMidia() {
                         aria-label="Github"
                         className="flex items-center text-gray-700 hover:text-black transition-colors"
                     >
-                        <FaGithub className="mr-2" /> Github
+                        Github
                     </a>
                 </li>
                 <li className="flex items-center">
@@ -45,7 +45,7 @@ export default function SocialMidia() {
                         aria-label="Telefone"
                         className="flex items-center text-green-600 hover:text-green-800 transition-colors"
                     >
-                        <MdOutlinePhoneAndroid className="mr-2" /> Ligue para: 848191186
+                        Ligue para: 848191186
                     </a>
                 </li>
                 <li className="flex items-center">
@@ -56,7 +56,7 @@ export default function SocialMidia() {
                         aria-label="WhatsApp"
                         className="flex items-center text-green-500 hover:text-green-700 transition-colors"
                     >
-                        <FaWhatsapp className="mr-2" /> WhatsApp
+                        WhatsApp
                     </a>
                 </li>
             </ul>
