@@ -13,7 +13,6 @@ function Page() {
     const [showPopup, setShowPopup] = useState(true);
     const [categorizedItems, setCategorizedItems] = useState({});
 
-    // Log de evento de acesso à página (somente no cliente e se Analytics estiver disponível)
     useEffect(() => {
         if (analytics) {
             logEvent(analytics, "page_view", {
@@ -35,10 +34,8 @@ function Page() {
                 }))
             );
 
-            // Ordenar os itens por nome
             const sortedItems = filePromises.sort((a, b) => a.name.localeCompare(b.name));
 
-            // Categorizar os itens por linguagem de programação
             const categories = {
                 CSS: [],
                 HTML: [],
@@ -75,7 +72,6 @@ function Page() {
         fetchStorageItems(currentPath);
     }, [currentPath]);
 
-    // Filtrar os itens com base no termo de pesquisa
     const filteredCategories = Object.fromEntries(
         Object.entries(categorizedItems).map(([category, items]) => [
             category,
@@ -94,26 +90,26 @@ function Page() {
                 <meta name="description" content="Explore um vasto acervo de livros sobre programação." />
             </Head>
 
-            <div className="container mx-auto p-4 max-w-7xl">
-                <h1 className="text-3xl text-center m-4">Bem-vindo à minha biblioteca!</h1>
+            <div className="container mx-auto px-4 max-w-7xl">
+                <h1 className="text-3xl font-bold text-center mt-6 mb-6">
+                    Bem-vindo à minha biblioteca!
+                </h1>
 
                 {/* Pop-up de boas-vindas */}
                 {showPopup && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white p-8 rounded shadow-lg max-w-md w-full text-justify">
-                            <h2 className="text-2xl font-bold mb-4">Bem-vindo à Biblioteca Online!</h2>
+                        <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                            <h2 className="text-2xl font-bold mb-4">
+                                Bem-vindo à Biblioteca Online!
+                            </h2>
                             <p className="mb-4">
-                                Explore um vasto acervo de livros sobre programação. 
-                                Aqui você encontrará recursos para todos os níveis de conhecimento, 
-                                desde iniciantes até desenvolvedores avançados.
-                            </p>
-                            <p className="mb-4">
-                                Descubra novas tecnologias, aprofunde suas habilidades e alcance 
-                                o próximo nível na sua jornada como programador!
+                                Explore um vasto acervo de livros sobre programação.
+                                Aqui você encontrará recursos para todos os níveis de
+                                conhecimento, desde iniciantes até desenvolvedores avançados.
                             </p>
                             <button
                                 onClick={() => setShowPopup(false)}
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                             >
                                 Vamos começar!
                             </button>
@@ -126,37 +122,49 @@ function Page() {
                     <input
                         type="text"
                         placeholder="Pesquise por nome..."
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
+               
+                <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-800 shadow z-50">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                <a href="#" className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                Biblioteca Online
+                </a>
+            </div>
+            </nav>
+
 
                 {/* Categorias */}
                 {Object.keys(filteredCategories).map((category) => (
                     <div key={category} className="mb-8">
-                        <h2 className="text-xl font-bold mb-4">{category}</h2>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-content-center">
+                        <h2 className="text-xl font-semibold mb-4">{category}</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredCategories[category].map((item, index) => (
-                                <li key={index} className="p-4 border-2 rounded gap-2">
+                                <div
+                                    key={index}
+                                    className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-lg transition-shadow"
+                                >
                                     <a
                                         href={item.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block text-justify text-wrap mb-2 text-base sm:text-lg"
+                                        className="block text-lg font-medium text-gray-700 mb-2 hover:text-blue-500"
                                     >
                                         📄 {item.name}
                                     </a>
                                     <a
                                         href={item.url}
                                         download
-                                        className="p-1 ring-offset-2 ring-4 rounded block text-center"
+                                        className="inline-block px-4 py-2 bg-blue-500 text-white text-center rounded-lg hover:bg-blue-600"
                                     >
                                         Visualizar
                                     </a>
-                                </li>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 ))}
             </div>
