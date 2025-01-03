@@ -34,7 +34,7 @@ export default function Footer() {
 
       {/* Footer Bottom Section */}
       <div className="absolute bottom-2 text-center w-full text-sm">
-        <p>&copy; 2024 Gervásio Bernardo Chavane. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Gervásio Bernardo Chavane. Todos os direitos reservados enjoy.</p>
       </div>
     </footer>
   );
