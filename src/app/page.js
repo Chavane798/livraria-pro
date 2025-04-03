@@ -314,9 +314,105 @@ function Page() {
         </div>
 
         {/* Rodapé */}
-        <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-6 mt-10">
-          <div className="container mx-auto px-4 text-center text-gray-600 dark:text-gray-300">
-            <p>© {new Date().getFullYear()} Biblioteca Online. Todos os direitos reservados.</p>
+        <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-10">
+          <div className="container mx-auto px-4 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Coluna 1 - Sobre */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl">📚</span>
+                  <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400">Biblioteca Online</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  Sua fonte confiável para livros e recursos de programação. Aprenda, desenvolva e cresça com nosso acervo digital.
+                </p>
+              </div>
+
+              {/* Coluna 2 - Links Rápidos */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Links Rápidos</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a href="#inicio" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      Início
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#categorias" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      Categorias
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sobre" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      Sobre
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Coluna 3 - Categorias */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Categorias</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a href="#javascript" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      JavaScript
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#python" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      Python
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#java" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                      Java
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Coluna 4 - Contato */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contato</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    <a href="mailto:gervasiochavane798@gmail.com" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      gervasiochavane798@gmail.com
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm3 14a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                    </svg>
+                    <a href="tel:+258848191186" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      +258 848 191 186
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Linha divisória */}
+            <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  © {new Date().getFullYear()} Biblioteca Online. Todos os direitos reservados.
+                </p>
+                <div className="flex items-center gap-4">
+                  <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                    Termos de Uso
+                  </a>
+                  <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm">
+                    Política de Privacidade
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </footer>
       </div>
